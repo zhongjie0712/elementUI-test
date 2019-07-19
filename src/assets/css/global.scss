@@ -1,0 +1,221 @@
+/**
+reset
+全局演示重置
+*/
+/**********************************************************/
+/* 通用全局设置*/
+* {
+  box-sizing: border-box;
+  outline: none; //取消高亮
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+  // line-height: 1.2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.dp-b {
+  display: block;
+}
+.dp-ib {
+  display: inline-block;
+}
+
+/* end of 通用全局设置*/
+
+/**********************************************************/
+// UI图纸尺寸为 750*1334
+$vw_base: 375;
+@function vw($px) {
+  @return $px / $vw_base * 100px;
+}
+
+/**********************************************************/
+
+// font-size
+//px to rem 插件：输入px后Alt+z自动转换
+$font-size-base: 1rem; //基础倍数
+$font-sizes: (
+  //12px
+    "xs": 0.75 * $font-size-base,
+  //14px
+    "sm": 0.875 * $font-size-base,
+  //16px
+    "m": 1 * $font-size-base,
+  //18px
+    "l": 1.125 * $font-size-base,
+  //20px
+    "xl": 1.25 * $font-size-base,
+  //22px
+    "xxl": 1.375 * $font-size-base,
+  //24px
+    "xxxl": 1.5 * $font-size-base
+);
+
+@each $sizeKey, $sizeValue in $font-sizes {
+  .font-#{$sizeKey} {
+    font-size: $sizeValue;
+  }
+}
+// ent of font-size
+/**********************************************************/
+
+//color
+$colors: (
+  "black": #000,
+  "white": #fff,
+  "light": #f9f9f9,
+  "grey": #999,
+  "blue": #409eff,
+  "success": #67c23a,
+  "warning": #e6a23c,
+  "danger": #f56c6c,
+  "info": #909399
+);
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background: $color;
+  }
+}
+// end of color
+/**********************************************************/
+
+//text-align 对齐
+//前面 $var 为变量，后面为集合。
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+// end of text-center
+/**********************************************************/
+
+// flex 弹性布局
+.x-flex {
+  display: flex;
+}
+.y-flex {
+  flex-direction: column;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+// justify-content属性
+$flex-jc: (
+  "start": flex-start,
+  "end": flex-end,
+  "center": center,
+  "baseline ": space-between,
+  "around": space-around
+);
+
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+//align-items属性定义项目在交叉轴上如何对齐。
+$flex-ai: (
+  "start": flex-start,
+  "end": flex-end,
+  "center": center,
+  "baseline ": baseline,
+  "stretch": stretch
+);
+
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+// end of flex；
+/**********************************************************/
+
+//margin外边距
+$mp: (
+  "m": margin,
+  "p": padding
+);
+$direction: (
+  "t": top,
+  "b": bottom,
+  "l": left,
+  "r": right
+);
+$margin-padding-base: 1rem; //基础倍数
+$spacing-sizes: (
+  0: 0 * $margin-padding-base,
+  1: 0.25 * $margin-padding-base,
+  2: 0.5 * $margin-padding-base,
+  3: 1 * $margin-padding-base,
+  4: 1.5 * $margin-padding-base,
+  5: 3 * $margin-padding-base
+);
+
+// margin :y auto;
+@each $spacingKey, $spacingValue in $spacing-sizes {
+  .auto-#{$spacingKey} {
+    margin: $spacingValue auto;
+  }
+}
+
+//margin and pidding
+@each $mpKey, $mpValue in $mp {
+  //m-3,p-3
+  @each $spacingKey, $spacingValue in $spacing-sizes {
+    .#{$mpKey}-#{$spacingKey} {
+      #{$mpValue}: #{$spacingValue};
+    }
+  }
+  //m:x left+right
+  @each $spacingKey, $spacingValue in $spacing-sizes {
+    .#{$mpKey}x-#{$spacingKey} {
+      #{$mpValue}: 0 #{$spacingValue};
+    }
+  }
+  //m:y top-bottom
+  @each $spacingKey, $spacingValue in $spacing-sizes {
+    .#{$mpKey}y-#{$spacingKey} {
+      #{$mpValue}: #{$spacingValue} 0;
+    }
+  }
+  //mt-0 ,pr-0
+  @each $directionKey, $directioninValue in $direction {
+    @each $spacingKey, $spacingValue in $spacing-sizes {
+      .#{$mpKey}#{$directionKey}-#{$spacingKey} {
+        #{$mpValue}-#{$directioninValue}: #{$spacingValue};
+      }
+    }
+  }
+}
+
+.tran {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+// end of margin
+/**********************************************************/

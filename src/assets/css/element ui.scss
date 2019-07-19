@@ -1,0 +1,25 @@
+/**
+*修改 element-UI 内置样式 
+*/ 
+// Aside组件
+
+.aSide {
+  width:14rem;
+  height:100vh;
+  .el-collapse {
+    border: none;
+    .el-collapse-item__header {
+      font-size: 20px;
+      padding-left:6rem;
+      background-color: #999;
+      border:none;
+    }
+    .el-collapse-item__wrap {
+      background-color: #999;
+    }
+  }
+}
+.el-collapse-item__wrap {
+  border: none;
+}
+
