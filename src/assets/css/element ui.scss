@@ -1,10 +1,36 @@
 /**
+*
 *修改 element-UI 内置样式 
 */
-// Aside组件
+
+/* start of 登录/注册组件 */
 .el-form-item.is-required:not(.is-no-asterisk)
   .el-form-item__label-wrap
   > .el-form-item__label:before,
 .el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label:before {
-  content:""!important;
+  content: "" !important; //输入快标题前*
+}
+
+.el-tabs__item {
+  width: 190px !important;
+  font-size: 40px !important;
+  text-align: center;
+  height: 60px !important;
+}
+.el-tabs__item:hover {
+  color: #f9f9f9 !important;
+  cursor: pointer;
+}
+.el-tabs__active-bar {
+  width: 200px !important;
+  background-color: #f56c6c !important;
+}
+.el-tabs__item.is-active {
+  color: #f9f9f9 !important;
+}
+
+/* end of  登录/注册组件*/
+
+.el-input__inner{
+  padding:0 40px !important;
 }

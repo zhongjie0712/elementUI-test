@@ -12,7 +12,7 @@ export default new Router({
       redirect: "/login"
     },
     {
-      path: "/",
+      path: "/home",
       name: "home",
       component: Home
     },
