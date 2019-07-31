@@ -6,74 +6,64 @@ import Layout from "../views/layout/Layout.vue";
 
 Vue.use(Router);
 
+const constantRouter = [
+  { path: "/", name: "login", component: Login, hidden: true },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import("../views/404"),
+    hidden: true
+  },
+  {
+    path: "/home",
+    name: "首页",
+    component: Layout,
+    menu: "one", //一级菜单
+    meta: { title: "home", icon: "home" },
+    children: [
+      {
+        path: "",
+        name: "home",
+        component: Home
+      }
+    ]
+  },
+  {
+    path: "/demo",
+    name: "demo演示",
+    component: Layout,
+    children: [
+      {
+        path: "/demo1-0",
+        name:"demo1-0",
+        component: () => import("../views/demo"),
+        meta: { title: "demo1-0", icon: "demo1-0" }
+      },
+      {
+        path: "/demo1-1",
+        name:"demo1-1",
+        component: () => import("../views/demo/demo1-1.vue"),
+        meta: { title: "demo1-1", icon: "demo1-1" }
+      },
+      {
+        path: "/demo1-2",
+        name:"demo1-2",
+
+        component: () => import("../views/demo/demo1-2.vue"),
+        meta: { title: "demo1-2", icon: "demo1-2" }
+      },
+      {
+        path: "/demo1-3",
+        name:"demo1-3",
+
+        component: () => import("../views/demo/demo1-3.vue"),
+        meta: { title: "demo1-3", icon: "demo1-3" }
+      },
+    ]
+  },
+  
+];
+
 export default new Router({
-  routes: [
-    {
-      path: "/",
-      name: "login",
-      component: Login
-    },
-    {
-      path: "/404",
-      name: "404",
-      component: () => import("../views/404")
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: Layout,
-      redirect: "/home/main",
-      children: [
-        {
-          path: "main",
-          name: "main",
-          component: Home,
-          meta: { title: "首页", icon: "home" }
-        }
-      ]
-    },
-    {
-      path: "/demo",
-      name: "demo",
-      component: Layout,
-      redirect: "/demo/main",
-      children: [
-        {
-          path: "main",
-          name: "testmain",
-          component: () => import("../views/demo"),
-          meta: { title: "demo", icon: "test" }
-        }
-      ]
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: Layout,
-      redirect: "/home/main",
-      meta: { title: "多级首页", icon: "home" },
-      children: [
-        {
-          path: "main",
-          component: Home,
-          meta: { title: "项目一", icon: "home" }
-        },
-        {
-          path: "main",
-          component: Home,
-          meta: { title: "项目二", icon: "home" }
-        },
-        {
-          path: "main",
-          component: Home,
-          meta: { title: "项目三", icon: "home" }
-        },
-        {
-          path: "main",
-          component: Home,
-          meta: { title: "项目四", icon: "home" }
-        }
-      ]
-    }
-  ]
+  routes: constantRouter
 });
