@@ -7,17 +7,13 @@
         <el-tab-pane label="登录" name="login">
           <el-form label-position="right" label-width="70px" :model="loginForm" :rules="rules">
             <el-form-item label="账号：" prop="userName">
-              <span class="user pl-3 pr-3">
-                <svg-icon icon-class="user" />
-              </span>
+              <svg-icon icon-class="user" class="user" />
               <el-input v-model="loginForm.userName" placeholder="请输入帐号" type="text" clearable></el-input>
             </el-form-item>
             <el-form-item label="密码：" prop="password">
-              <span class="user pl-3 pr-3">
-                <svg-icon icon-class="password" />
-              </span>
+              <svg-icon icon-class="password" class="user" />
               <span class="eye pl-3 pr-3" @click="showPassword">
-                <svg-icon icon-class="eye" />
+                <svg-icon :icon-class="passwordType=='password' ?'eye':'user'" />
               </span>
               <el-input
                 v-model="loginForm.password"
@@ -27,6 +23,9 @@
               ></el-input>
             </el-form-item>
           </el-form>
+          <div class="btn">
+            <el-button type="primary" round size="medium" style="width:100%" @click="toHome">登录</el-button>
+          </div>
         </el-tab-pane>
         <el-tab-pane label="注册" name="register">
           <el-form label-position="right" label-width="70px" :model="registerForm" :rules="rules">
@@ -77,6 +76,10 @@ export default {
     };
   },
   methods: {
+    toHome(){
+      console.log("toHome")
+      this.$router.push({name:'home'})
+    },
     handleClick(tab, event) {
       // console.log(tab, event);
     },
@@ -120,7 +123,7 @@ export default {
 .user {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 10px;
   z-index: 40;
   transform: translateY(-50%);
   user-select: none;
