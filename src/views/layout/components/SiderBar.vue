@@ -3,15 +3,18 @@
     <el-row>
       <el-menu
         router
+        unique-opened
         :default-active="$route.path"
         @open="handleOpen"
         @close="handleClose"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
+        :collapse="isCollapse"
+        class="el-menu-vertical-demo"
       >
         <!-- 左侧导航栏抽取循环部分 将路由列表传给子组件-->
-        <asideBarItem v-for="item in routers" :routes="item" :key="item.path"></asideBarItem>
+        <asideBarItem v-for="item in routers" :routes="item" :key="item.path" class="overflow"></asideBarItem>
       </el-menu>
     </el-row>
   </div>
@@ -24,13 +27,17 @@ export default {
     asideBarItem
   },
   data() {
-    return {};
+    return {
+    };
   },
   computed: {
     routers() {
-      console.log(this.$router.options.routes)
-      //this.$router.options获取路由列表
-      return this.$router.options.routes;
+      // return this.$router.options.routes获取路由列表;
+      //去除404和login路由，选择layout路由。
+      return this.$router.options.routes[0].children
+    },
+    isCollapse(){
+      return this.$store.state.isCollapse
     }
   },
   methods: {
@@ -44,4 +51,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+ .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    // min-height: 400px;
+  }
+  .overflow{
+    overflow-x: hidden;
+  }
 </style>

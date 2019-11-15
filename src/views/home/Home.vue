@@ -7,7 +7,11 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      test: ""
+    };
+  },
+  methods: {
   }
 };
 </script>

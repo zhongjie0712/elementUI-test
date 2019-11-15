@@ -1,7 +1,5 @@
 <template>
   <div class="login">
-    <h1 class="text-center">这是登录/注册页面</h1>
-
     <div class="login-container">
       <el-tabs v-model="activeName" @tab-click="handleClick" class="login_register p-5 bg-bank">
         <el-tab-pane label="登录" name="login">
@@ -95,14 +93,14 @@ export default {
 <style lang="scss" scoped>
 .login-container {
   position: relative;
-  height: 800px;
-  background-color: #909399;
+  height: 100vh;
+  background-color: #545c64;
   .login_register {
     border-radius: 20px;
     width: 500px;
     position: absolute;
-    top: 50%;
-    left: 70%;
+    top: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
     .el-form {
       .el-form-item {
